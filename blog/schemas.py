@@ -7,7 +7,7 @@ class BlogBase(BaseModel):
 
 class Blog(BlogBase):
     class Config():
-        orm_mode = True
+        from_attributes = True
 
 class User(BaseModel):
     name:str
@@ -19,7 +19,7 @@ class ShowUser(BaseModel):
     email:str
     blogs:List[Blog] = []
     class Config():
-        orm_mode = True
+        from_attributes = True
 
 class LocalUser(BaseModel):
     name:str
@@ -30,7 +30,7 @@ class ShowBlog(Blog):
     body: str
     creator: LocalUser  # doit correspondre au relationship dans models.py
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class Login(BaseModel):
@@ -43,4 +43,4 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
-    username: str | None = None
+    email: str | None = None
